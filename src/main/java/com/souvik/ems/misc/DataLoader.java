@@ -49,11 +49,11 @@ public class DataLoader implements ApplicationRunner {
         default_USER.setEmail("user@example.com");
         default_USER.setPassword("$2a$10$os1EIh6FDFsCenAYN64PKuzQsgzAFAK0sCcyVOQ40Zr4J/K8MC5ia");
         default_USER.setSalary(40000.0);
-        if (default_USER.getRoles() != null && !default_USER.getRoles().contains("USER")) {
+        if (default_USER.getRoles() == null || !default_USER.getRoles().contains("USER")) {
             default_USER.setRoles(new ArrayList<>());
             employeeService.saveEmployee(default_USER);
         }
-        final Role ROLE_USER = roleService.findByName("USER").get();
+        Role ROLE_USER = roleService.findByName("USER").get();
         List<Role> user_roles = default_USER.getRoles();
         user_roles.add(ROLE_USER);
         default_USER.setRoles(user_roles);
@@ -66,14 +66,14 @@ public class DataLoader implements ApplicationRunner {
         default_ADMIN.setEmail("admin@example.com");
         default_ADMIN.setPassword("$2a$10$GNuGG/.Zz8xYWK0OzHIlL.Vv1tLwV1qUVS4aGrgMTubuyX4HtwT.i");
         default_ADMIN.setSalary(60000.0);
-        if (default_ADMIN.getRoles() != null && !default_ADMIN.getRoles().contains("ADMIN")) {
+        if (default_ADMIN.getRoles() == null || !default_ADMIN.getRoles().contains("ADMIN")) {
             default_ADMIN.setRoles(new ArrayList<>());
             employeeService.saveEmployee(default_ADMIN);
         }
-        final Role ROLE_ADMIN = roleService.findByName("ADMIN").get();
+        Role ROLE_ADMIN = roleService.findByName("ADMIN").get();
         List<Role> admin_roles = default_ADMIN.getRoles();
         admin_roles.add(ROLE_ADMIN);
-        default_USER.setRoles(admin_roles);
+        default_ADMIN.setRoles(admin_roles);
         employeeService.saveEmployee(default_ADMIN);
 
         createRandomUsers();
