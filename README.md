@@ -1,4 +1,4 @@
-# Employee Management System
+# <img src="https://cdn-icons-png.flaticon.com/512/10008/10008118.png" width=30 height=30> Employee Management System
 This is an employee management web application that features a well-designed UI and robust CRUD functionalities along with authentication and role-based authorization for employees.
 
 [Live Link 👉](https://ems.up.railway.app/)
