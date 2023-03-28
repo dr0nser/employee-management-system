@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/10008/10008118.png" type="image/x-png">
+</head>
+<body>
+<nav class="navbar navbar-light fixed-top bg-dark py-2">
+    <div class="container mx-auto d-flex align-items-center justify-content-between">
+        <a class="text-decoration-none fs-5 text-white" th:href="@{/}">
+            <img src="https://cdn-icons-png.flaticon.com/512/10008/10008118.png" width="50" height="50" alt="EMS">
+            Employee Management System
+        </a>
+        <div class="d-flex align-items-center gap-4">
+            <div class="fs-6 text-white d-flex align-items-center gap-2">
+                <img width="25" height="25" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAACe0lEQVR4nO2ZvW7UQBDHHdBBEQeQKKhCSaDhq4AuHQ0QPqTwEHyUqRLSBsELQA0EkQSeAIk00PAAEAKkQBQE6YokNATBDw2ag8kqsmPf7Nk6+SdZOsme2f+sZ2Z3fUnS0NDgBtACrgFPgCXgu17ye1bvtZI6AlwFPpCPPHMlqQvALuAuxbkjtnUIIBT/FZgETgCDep0EpvTeliCSGqSN5SmQZjw/BMwFNpd7q/q/mD1Bzov4gR3YDQDzxm65ksLWjmLTJi1gK29i1diPx1W7vQhplR0mS9jfNvaP46jMFvDeCDhewl4Ku8NSHJXZAjaMgLSEfWrsN+KojBvAPmO/Fkdln6fQrBEwVcJ+2tg/iqOyWBsdKpg+36puo61gIZsrsJAtVL6QCbKrZCvzWW9CZ96K/w1cSqpEd5WWVV2kTmmrTPX3dJA2wkyl4s12OgwiD5n5mVpspzvIrlLzOY/lytMmp7DHZW8DvNPFTq630ir1Xj2PlA0N/QwwDDwD1onPui52w57i2/SetksQOvNVseARgE2bM107zB/vrOtBx06Hi8Jejwn8Mv5aPVrN/+Hh0O4gj7iozB5vxDuAF8bfDReV2ePdMuM98HB43Tj8DOx3Ubr9WAeAL2a8cx5OBwOnr8p8Rtnh58bXZpw3wG4v5+eDYv4IjLo4T/76HwU+Gf+bwGkv/zY35SRlkfq4UKY7abe5GNSY8DPaVwo9dYXnWmENeA5M6NuSTnJQP8Hv1d8jem9CnxWbEPE9FkW8CeKQnq5kprzYBB6K76jig0AOA/eAlS6Er+hfVD47zy6COaY1ch9Y1IKU3eQPvdpa+C/1mZvA0UpFNzT0CX8AAN0uon5OEFIAAAAASUVORK5CYII=">
+                <p class="p-0 m-0" th:text="${username}"></p>
+            </div>
+            <a th:href="@{/logout}" class="btn btn-danger px-4 py-2 fs-6">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container py-5" style="margin-top: 50px;">
+
+    <div class="alert alert-success d-flex align-items-center gap-3" role="alert" th:if="${success}">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-circle" viewBox="0 0 16 16">
+            <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z"/>
+            <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z"/>
+        </svg>
+        <span th:text="${success}"></span>
+    </div>
+    <div class="alert alert-danger d-flex align-items-center gap-3" role="alert" th:if="${error}">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-triangle" viewBox="0 0 16 16">
+            <path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"/>
+            <path d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z"/>
+        </svg>
+        <span th:text="${error}"></span>
+    </div>
+
+    <form th:action="@{/search}" method="get" th:object="${search}">
+        <label class="form-label fs-5">Search by keywords</label>
+        <div class="mb-3 d-flex gap-2">
+            <input th:field="*{firstName}" type="text" class="form-control" name="firstName" id="keyword" placeholder="First Name">
+            <input th:field="*{lastName}" type="text" class="form-control" name="lastName" id="lastName" placeholder="Last Name">
+            <input th:field="*{email}" type="text" class="form-control" name="email" id="email" placeholder="Email">
+        </div>
+        <div class="d-flex gap-2 justify-content-end">
+            <button type="submit" class="btn btn-success my-2 fs-5 px-4">Search</button>
+        </div>
+    </form>
+    <div class="my-4" th:if="${totalPages > 1}">
+        <div class="d-flex align-items-center gap-2">
+
+            <a class="btn btn-light text-decoration-none" th:if="${currentPage > 1}" th:href="@{'/1?sortField=' + ${sortField} + '&sortOrder=' + ${sortOrder}}">First</a>
+            <a class="btn btn-light text-decoration-none" th:if="${currentPage > 1}" th:href="@{'/' + ${currentPage - 1} + '?sortField=' + ${sortField} + '&sortOrder=' + ${sortOrder}}">Previous</a>
+
+            <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+                <a class="btn rounded-circle btn-light text-decoration-none" th:if="${currentPage != i}" th:href="@{'/' + ${i} + '?sortField=' + ${sortField} + '&sortOrder=' + ${sortOrder}}">[[${i}]]</a>
+                <span class="btn rounded-circle btn-primary text-decoration-none" th:unless="${currentPage != i}">[[${i}]]</span> &nbsp; &nbsp;
+            </span>
+
+            <a class="btn btn-light text-decoration-none" th:if="${currentPage < totalPages}" th:href="@{'/' + ${currentPage + 1} + '?sortField=' + ${sortField} + '&sortOrder=' + ${sortOrder}}">Next</a>
+
+            <a class="btn btn-light text-decoration-none" th:if="${currentPage < totalPages}" th:href="@{'/' + ${totalPages} + '?sortField=' + ${sortField} + '&sortOrder=' + ${sortOrder}}">Last</a>
+
+        </div>
+    </div>
+    <table class="table table-bordered table-hover my-3">
+        <thead>
+        <th>
+            <a  class="btn btn-link text-decoration-none fs-5" th:href="@{'/' + ${currentPage} + '?sortField=firstName&sortOrder=' + ${reverseSortOrder}}">
+                First Name
+                <span th:if="${sortField == 'firstName' && sortOrder == 'asc'}">&#9652</span>
+                <span th:if="${sortField == 'firstName' && sortOrder == 'desc'}">&#9662</span>
+            </a>
+        </th>
+        <th>
+            <a class="btn btn-link text-decoration-none fs-5" th:href="@{'/' + ${currentPage} + '?sortField=lastName&sortOrder=' + ${reverseSortOrder}}">
+                Last Name
+                <span th:if="${sortField == 'lastName' && sortOrder == 'asc'}">&#9652</span> <!-- got the number code for symbol from https://www.w3schools.com/charsets/ref_utf_geometric.asp -->
+                <span th:if="${sortField == 'lastName' && sortOrder == 'desc'}">&#9662</span>
+            </a>
+        </th>
+        <th>
+            <a class="btn btn-link text-decoration-none fs-5" th:href="@{'/' + ${currentPage} + '?sortField=email&sortOrder=' + ${reverseSortOrder}}">
+                Email
+                <span th:if="${sortField == 'email' && sortOrder == 'asc'}">&#9652</span>
+                <span th:if="${sortField == 'email' && sortOrder == 'desc'}">&#9662</span>
+            </a>
+        </th>
+        <th><span class="btn btn-link text-decoration-none fs-5 disabled">Salary</span></th>
+        <th><span class="btn btn-link text-decoration-none fs-5 disabled">Action</span></th>
+        </thead>
+        <tbody>
+        <tr th:if="${totalRows > 0}" th:each="employee : ${employees}">
+            <td th:text="${employee.firstName}"></td>
+            <td th:text="${employee.lastName}"></td>
+            <td th:text="${employee.email}"></td>
+            <td th:text="${employee.salary}"></td>
+            <td class="d-flex justify-content-around">
+                <a th:href="@{/update/{id}(id=${employee.id})}"><button class="btn btn-primary btn-block">Update</button></a>
+                <a th:href="@{/delete/{id}(id=${employee.id})}"><button class="btn btn-danger btn-block">Delete</button></a>
+            </td>
+        </tr>
+        <tr th:if="${totalRows == 0}">
+            <td class="text-center text-danger fs-5" colspan="5">No Employees Added!</td>
+        </tr>
+        </tbody>
+    </table>
+    <a class="w-100 py-2 btn btn-primary text-decoration-none my-2 fs-5" th:href="@{/add}">Add New Employee</a>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body>
+</html>
