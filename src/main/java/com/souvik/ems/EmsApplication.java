@@ -10,14 +10,4 @@ public class EmsApplication {
 		SpringApplication.run(EmsApplication.class, args);
 	}
 
-	/*
-	USER
-	email: nu@example.com
-	password: normaluser
-
-	ADMIN
-	email: au@example.com
-	password: adminuser
-	 */
-
 }

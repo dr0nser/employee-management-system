@@ -38,10 +38,6 @@ public class DataLoader implements ApplicationRunner {
     }
 
     void createDefaultUsers() {
-        /*
-        Default User -> password: user -> encoded: $2a$10$os1EIh6FDFsCenAYN64PKuzQsgzAFAK0sCcyVOQ40Zr4J/K8MC5ia
-        Admin User -> password: admin -> encoded: $2a$10$GNuGG/.Zz8xYWK0OzHIlL.Vv1tLwV1qUVS4aGrgMTubuyX4HtwT.i
-         */
         Optional<Employee> DEFAULT_USER = employeeService.findByEmail("user@example.com");
         Employee default_USER = DEFAULT_USER.orElseGet(Employee::new);
         default_USER.setFirstName("Normal");
